@@ -29,6 +29,7 @@ function random(min, max, includes) {
   return numeroRandom;
 }
 
+//funzione da lanciare quando clicco su play
 function playGame(difficult) {
   let numeroCelle;
   let classes = [];
@@ -65,6 +66,18 @@ function playGame(difficult) {
   return numeroCelle;
 }
 
+//funzione che genera indici delle bombe
+function generaBombe(numeroCelle, numeroBombe) {
+  const arrayBombe = [];
+  do {
+    const num = random(1, numeroCelle, true);
+    if (!arrayBombe.includes(num)) {
+      arrayBombe.push(num);
+    }
+  } while (arrayBombe.length < numeroBombe);
+  return arrayBombe;
+}
+
 /*
 OPERATIONS
 */
@@ -81,7 +94,8 @@ let gameOver;
 playButton.addEventListener("click", function () {
   const selectValue = document.querySelector("select").value;
   let numeroCelle;
-  // let classes = [];
+
+  //se è la prima volta che clicco su play
   if (!isPlaying) {
     numeroCelle = playGame(selectValue);
   } else {
@@ -90,39 +104,41 @@ playButton.addEventListener("click", function () {
     numeroCelle = playGame(selectValue);
   }
 
-  //genero 16 numeri casuali tra 1 e numeroCelle
-  const arrayBombe = [];
-  do {
-    const num = random(1, numeroCelle, true);
-    if (!arrayBombe.includes(num)) {
-      arrayBombe.push(num);
-    }
-  } while (arrayBombe.length < 16);
+  //genero array di bombe
+  const arrayBombe = generaBombe(numeroCelle, numeroBombe);
 
-  console.log(arrayBombe);
+  // console.log(arrayBombe);
 
   //lista di tutte le celle
   const cells = document.querySelectorAll(".cell");
   const celleCliccate = [];
   let punteggio = 0;
+
+  //scorro lista delle celle
   for (let j = 0; j < cells.length; j++) {
     cells[j].addEventListener("click", function () {
+      //se non sono in game over
       if (!gameOver) {
+        //se clicco su una bomba
         if (arrayBombe.includes(j + 1)) {
           cells[j].classList.add("new-bg-bomba");
           console.log(`Hai cliccato sulla cella ${cells[j].innerHTML}`);
           console.log(`Game Over! Punteggio: ${punteggio}`);
           gameOver = true;
+          //scopro tutte le bombe
           for (let i = 0; i < arrayBombe.length; i++) {
             cells[arrayBombe[i] - 1].classList.add("new-bg-bomba");
           }
-        } else if (!celleCliccate.includes(j + 1)) {
+        } //se clicco su una cella già cliccata
+        else if (!celleCliccate.includes(j + 1)) {
           cells[j].classList.add("new-bg");
           console.log(`Hai cliccato sulla cella ${cells[j].innerHTML}`);
           celleCliccate.push(j + 1);
           punteggio++;
+          //se ho cliccato su tutte le celle senza bomba
           if (punteggio === numeroCelle - numeroBombe) {
             console.log(`Hai vinto! Punteggio: ${punteggio}`);
+            gameOver = true;
           }
         }
       }
