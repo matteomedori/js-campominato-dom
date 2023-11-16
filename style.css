@@ -1,0 +1,128 @@
+/* 
+---------
+RESET
+---------
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 
+---------
+COMMON
+---------
+*/
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 
+---------
+HEADER
+---------
+*/
+
+header {
+  display: flex;
+  padding: 20px 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header button {
+  all: unset;
+  padding: 3px 35px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+header select {
+  padding: 3px 35px 3px 0px;
+  border-radius: 5px;
+  text-align: left;
+}
+
+header button,
+header select {
+  background-color: rgb(248, 239, 239);
+  cursor: pointer;
+}
+
+header .left-header {
+  display: flex;
+  align-items: center;
+}
+
+header img {
+  width: 70px;
+}
+
+/* 
+---------
+MAIN
+---------
+*/
+
+main {
+  flex-grow: 1;
+  background-color: aquamarine;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main .board {
+  height: 500px;
+  width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+main .cell {
+  border: 1px solid black;
+  cursor: pointer;
+  text-align: center;
+}
+
+.low-difficult {
+  width: calc(100% / 10);
+  height: calc(100% / 10);
+  line-height: 50px;
+}
+
+.medium-difficult {
+  width: calc(100% / 9);
+  height: calc(100% / 9);
+  line-height: 55.55px;
+}
+
+.high-difficult {
+  width: calc(100% / 7);
+  height: calc(100% / 7);
+  line-height: 71.43px;
+}
+
+.new-bg {
+  background-color: rgb(108, 201, 255);
+}
+
+.new-bg-bomba {
+  background-color: red;
+}
+
+/* 
+---------
+FOOTER
+---------
+*/
+
+footer {
+  padding: 30px 20px;
+}
