@@ -26,3 +26,11 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
       - incremento il punteggio
       - se il punteggio è pari al numero di celle - il numero di bombe
         - stampo che ho vinto
+
+## Superbonus 2
+
+Quando si clicca su una bomba e finisce la partita, il software scopre tutte le bombe nascoste.
+
+- all'interno del case in cui si clicca su una bomba aggiungo un ciclo che scorre l'array contenente gli indici delle bombe
+- per ogni iterazione
+  - aggiungo alla cella in posizione arrayBombe[i] la classe che colora di rosso la cella
