@@ -113,6 +113,9 @@ playButton.addEventListener("click", function () {
           console.log(`Hai cliccato sulla cella ${cells[j].innerHTML}`);
           console.log(`Game Over! Punteggio: ${punteggio}`);
           gameOver = true;
+          for (let i = 0; i < arrayBombe.length; i++) {
+            cells[arrayBombe[i] - 1].classList.add("new-bg-bomba");
+          }
         } else if (!celleCliccate.includes(j + 1)) {
           cells[j].classList.add("new-bg");
           console.log(`Hai cliccato sulla cella ${cells[j].innerHTML}`);
